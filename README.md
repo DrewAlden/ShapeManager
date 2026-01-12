@@ -16,3 +16,8 @@ Instructions to run:
 - Run the server from within the backend folder with "npm start"
 - Run the client from the frontend folder with "python3 -m http.server 8000"
   - Navigate to http://localhost:8000 in a browser to see the working index.html page
+
+Class inheritance:
+Shape -> Shape2D, Shape3D
+Shape2D -> Rectangle, Circle, RegularPolygon
+Shape3D -> Box, Sphere, Cylinder, Prism, Pyramid

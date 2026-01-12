@@ -10,7 +10,7 @@ Purpose:    Provides functionality for the index.html page.
 */
 
 
-import {createShape} from "../shape.mjs";
+import {createShape} from "./shape.mjs";
 
 //Buttons for the user to interact with to create shapes,
 //clear the list, and display the list

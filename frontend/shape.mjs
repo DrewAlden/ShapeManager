@@ -16,14 +16,11 @@ Purpose:    Provides a shape class which will be divided into
 Handles all shape creation. Dynamically creates shapes depending
 on the shapeType in the options json sent in.
 
+Imports modules dynamically to avoid circular imports
+
 If a shape can't be created of that type, returns null and
 alerts the user.
 */
-// Use dynamic imports inside createShape to avoid circular imports
-// Subclasses import `Shape`, so statically importing them here
-// creates a cycle: shape.mjs -> subclass -> shape.mjs
-// Dynamic imports defer loading until after `Shape` is initialized.
-
 export async function createShape(options){
 
   //Checks to make sure the backend can be contacted before trying to make the shape
@@ -35,26 +32,26 @@ export async function createShape(options){
   switch (options.shapeType){
     case "rectangle":
       if (options.length > 0 && options.width > 0){
-        const { Rectangle } = await import("./frontend/rectangle.mjs");
+        const { Rectangle } = await import("./rectangle.mjs");
         return new Rectangle(options);
       }
       break;
     case "circle":
       if (options.radius > 0){
-        const { Circle } = await import("./frontend/circle.mjs");
+        const { Circle } = await import("./circle.mjs");
         return new Circle(options);
       }
       break;
     case "polygon":
       // Plus sign is used to convert linput string to a number for integer validation
       if (options.numSides > 2 && Number.isInteger(+options.numSides) && options.sideLength > 0){
-        const { RegularPolygon } = await import("./frontend/polygon.mjs");
+        const { RegularPolygon } = await import("./polygon.mjs");
         return new RegularPolygon(options);
       }
       break;
     case "box":
       if (options.length > 0 && options.width > 0 && options.height > 0){
-        const { Box } = await import("./frontend/box.mjs");
+        const { Box } = await import("./box.mjs");
         return new Box(options);
       }
       break;
@@ -66,19 +63,19 @@ export async function createShape(options){
       break;
     case "cylinder":
       if (options.radius > 0 && options.height > 0){
-        const { Cylinder } = await import("./frontend/cylinder.mjs");
+        const { Cylinder } = await import("./cylinder.mjs");
         return new Cylinder(options);
       }
       break;
     case "prism":
       if (options.baseSideLength > 0 && options.height > 0 && options.baseSideNum > 2 &&  Number.isInteger(+options.baseSideNum)){
-        const { Prism } = await import("./frontend/prism.mjs");
+        const { Prism } = await import("./prism.mjs");
         return new Prism(options);
       }
       break;
     case "pyramid":
       if (options.baseSideLength > 0 && options.height > 0 && options.baseSideNum > 2 && Number.isInteger(+options.baseSideNum)){
-        const { Pyramid } = await import("./frontend/pyramid.mjs");
+        const { Pyramid } = await import("./pyramid.mjs");
         return new Pyramid(options);
       }
       break;
