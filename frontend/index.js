@@ -40,6 +40,7 @@ const numSidesDiv = document.getElementById("numSidesDiv");
 const sideLengthDiv = document.getElementById("sideLengthDiv");
 const baseSideLengthDiv = document.getElementById("baseSideLengthDiv");
 const baseSideNumDiv = document.getElementById("baseSideNumDiv");
+const buttonsDiv = document.getElementById("buttonsDiv");
 
 //Used to print out a list of all shapes to the user
 const displayedList = document.getElementById("displayedList");
@@ -57,6 +58,7 @@ const inputDivArray = [
   sideLengthDiv,
   baseSideLengthDiv,
   baseSideNumDiv,
+  buttonsDiv,
 ];
 
 //Used to store the current list of shapes the user has
@@ -160,8 +162,13 @@ Should be called when shapeTypeInput's value is changed.
 */
 function updateVisibleElements(value){
   hideAllFields();
+
+  //Once any shape type is selected, 
+  //unhide the fields that should stay for all shapes
   colorDiv.classList.remove("hide");
+  buttonsDiv.classList.remove("hide");
   colorDiv.classList.add("show");
+  buttonsDiv.classList.add("show");
   switch (value){
     case "rectangle":
       lengthDiv.classList.remove("hide");
