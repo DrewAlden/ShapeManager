@@ -1,0 +1,30 @@
+* {
+  margin: 1;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.show {
+  display: inline !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.button {
+  background-color: #505050;
+  text-decoration: none;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.text {
+  color: #ffffff;
+  font-size: 14px;
+}

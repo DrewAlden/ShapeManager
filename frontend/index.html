@@ -1,0 +1,111 @@
+<!--
+Author:     Drew Alden
+Filename:   index.html
+Purpose:    Provides the user with a way to interact with the backend
+            by creating different kinds of shapes, getting their values,
+            and seeing a full list of all created shapes
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- OTHER META TAGS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- WEBSITE TITLE -->
+    <title>Shape Manager</title>
+
+    <!-- WEBSITE DESCRIPTION -->
+    <meta name="description" content="This is my cool website!" />
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/jpg" href="/path/to/your/favicon/" />
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- *currently set to "Roboto". Feel free to change it to whatever you like* -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS STYLE LINK -->
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body style="background-color:#000000;">
+    <!--START OF CODE-->
+    <head>
+      <title class="text">Create a Shape</title>
+    </head>
+
+    <!--SELECT DROPDOWN                                                               -->
+    <label for="shapeType" class="text">Shape Type:</label>
+
+    <select type="text" name="shapeType" id="shapeTypeInput" class="button">
+      <option value="" disabled selected>Select a shape</option>
+      <option value="rectangle">Rectangle</option>
+      <option value="circle">Circle</option>
+      <option value="polygon">Polygon</option>
+      <option value="box">Box</option>
+      <option value="sphere">Sphere</option>
+      <option value="cylinder">Cylinder</option>
+      <option value="prism">Prism</option>
+      <option value="pyramid">Pyramid</option>
+    </select>
+
+    <div id="colorDiv" class="hide"><br><br>
+    <label for="shapeColor" class="text">Shape Color (dark colors may be hard to see): </label>
+    <input type="color" name="shapeColor" id="shapeColorInput" class="button" value="#ffffff"></input></div>
+    
+    <div id="lengthDiv" class="hide"><br><br>
+    <label for="lengthInput" class="text">Length: </label>
+    <input type="number" name="lengthInput" id="lengthInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="widthDiv" class="hide"><br><br>
+    <label for="widthInput" class="text">Width: </label>
+    <input type="number" name="widthInput" id="widthInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="heightDiv" class="hide"><br><br>
+    <label for="heightInput" class="text">Height: </label>
+    <input type="number" name="heightInput" id="heightInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="radiusDiv" class="hide"><br><br>
+    <label for="radiusInput" class="text">Radius: </label>
+    <input type="number" name="radiusInput" id="radiusInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="numSidesDiv" class="hide"><br><br>
+    <label for="numSidesInput" class="text">Number of Sides: </label>
+    <input type="number" name="numSidesInput" id="numSidesInput" placeholder="3 or more sides"></input></div>
+    
+    <div id="sideLengthDiv" class="hide"><br><br>
+    <label for="sideLengthInput" class="text">Side Length: </label>
+    <input type="number" name="sideLengthInput" id="sideLengthInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="baseSideLengthDiv" class="hide"><br><br>
+    <label for="baseSideLengthInput" class="text">Length of Base Sides: </label>
+    <input type="number" name="baseSideLengthInput" id="baseSideLengthInput" placeholder="Must be greater than 0"></input></div>
+    
+    <div id="baseSideNumDiv" class="hide"><br><br>
+    <label for="baseSideNumInput" class="text">Number of Sides on Base: </label>
+    <input type="number" name="baseSideNumInput" id="baseSideNumInput" placeholder="3 or more sides"></input></div>
+    
+    <br><br>
+
+    <button id="createShape" class="button">Create your Shape Here!</button>
+
+    <script type="module" src="index.js"></script>
+
+    <br><br>
+
+    <button id="displayShapes" class="button">Display all shapes</button>
+
+    <br><br>
+
+    <button id="clearList" class="button">Clear list of shapes</button>
+
+    <br><br>
+
+    <div id="displayedList"></div>
+  </body>
+</html>
