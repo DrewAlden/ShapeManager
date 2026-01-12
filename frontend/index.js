@@ -109,9 +109,10 @@ createShapeButton.addEventListener("click", async function (){
       newShape.getSurfaceArea();
     }
     shapeList.push(newShape);
+    displayedList.innerHTML = "<div style=\"color:#44ff44\">Shape created</div>";
   }
   else{
-    alert("Shape could not be created.");
+    displayedList.innerHTML = "<div style=\"color:#ff0000\">Shape could not be created. Invalid dimensions.</div>";
   }
 })
 

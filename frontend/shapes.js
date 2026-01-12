@@ -27,28 +27,53 @@ export async function createShape(options){
     alert("Problem contacting the backend");
     return null;
   }
-  const data = await response.json();
   switch (options.shapeType){
     case "rectangle":
-      return new Rectangle(options);
+      if (options.length > 0 && options.width > 0){
+        return new Rectangle(options);
+      }
+      break;
     case "circle":
-      return new Circle(options);
+      if (options.radius > 0){
+        return new Circle(options);
+      }
+      break;
     case "polygon":
-      return new RegularPolygon(options);
+      // Plus sign is used to convert linput string to a number for integer validation
+      if (options.numSides > 2 && Number.isInteger(+options.numSides) && options.sideLength > 0){
+        return new RegularPolygon(options);
+      }
+      break;
     case "box":
-      return new Box(options);
+      if (options.length > 0 && options.width > 0 && options.height > 0){
+        return new Box(options);
+      }
+      break;
     case "sphere":
-      return new Sphere(options);
+      if (options.radius > 0){
+        return new Sphere(options);
+      }
+      break;
     case "cylinder":
-      return new Cylinder(options);
+      if (options.radius > 0 && options.height > 0){
+        return new Cylinder(options);
+      }
+      break;
     case "prism":
-      return new Prism(options);
+      if (options.baseSideLength > 0 && options.height > 0 && options.baseSideNum > 2 &&  Number.isInteger(+options.baseSideNum)){
+        return new Prism(options);
+      }
+      break;
     case "pyramid":
-      return new Pyramid(options);
+      if (options.baseSideLength > 0 && options.height > 0 && options.baseSideNum > 2 && Number.isInteger(+options.baseSideNum)){
+        return new Pyramid(options);
+      }
+      break;
     default:
       alert("Invalid shape");
       return null;
   }
+  return null;
 }
 
 /*
@@ -205,8 +230,8 @@ class Rectangle extends Shape2D{
   }
   constructor(options){
     super(options);
-    this.length = makeNumValid(options.length, 0, 1, false);
-    this.width = makeNumValid(options.width, 0, 1, false);
+    this.length = options.length;
+    this.width = options.width;
   }
 }
 
@@ -230,7 +255,7 @@ class Circle extends Shape2D{
   }
   constructor(options){
     super(options);
-    this.radius = makeNumValid(options.radius, 0, 1, false);
+    this.radius = options.radius
   }
 }
 
@@ -257,8 +282,8 @@ class RegularPolygon extends Shape2D{
   }
   constructor(options){
     super(options);
-    this.numSides = makeNumValid(options.numSides, 2, 3, true);
-    this.sideLength = makeNumValid(options.sideLength, 0, 1, false);
+    this.numSides = options.numSides
+    this.sideLength = options.sideLength
   }
 }
 
@@ -288,9 +313,9 @@ class Box extends Shape3D{
   }
   constructor(options){
     super(options);
-    this.length = makeNumValid(options.length, 0, 1, false);
-    this.width = makeNumValid(options.width, 0, 1, false);
-    this.height = makeNumValid(options.height, 0, 1, false);
+    this.length = options.length
+    this.width = options.width
+    this.height = options.height
   }
 }
 
@@ -314,7 +339,7 @@ class Sphere extends Shape3D{
   }
   constructor(options){
     super(options);
-    this.radius = makeNumValid(options.radius, 0, 1, false);
+    this.radius = options.radius
   }
 }
 
@@ -341,8 +366,8 @@ class Cylinder extends Shape3D{
   }
   constructor(options){
     super(options);
-    this.radius = makeNumValid(options.radius, 0, 1, false);
-    this.height = makeNumValid(options.height, 0, 1, false);
+    this.radius = options.radius
+    this.height = options.height
   }
 }
 
@@ -373,9 +398,9 @@ class Prism extends Shape3D{
   }
   constructor(options){
     super(options);
-    this.baseSideLength = makeNumValid(options.baseSideLength, 0, 1, false);
-    this.baseSideNum = makeNumValid(options.baseSideNum, 2, 3, true);
-    this.height = makeNumValid(options.height, 0, 1, false);
+    this.baseSideLength = options.baseSideLength
+    this.baseSideNum = options.baseSideNum
+    this.height = options.height
   }
 }
 
@@ -406,27 +431,8 @@ class Pyramid extends Shape3D{
   }
   constructor(options){
     super(options);
-    this.baseSideLength = makeNumValid(options.baseSideLength, 0, 1, false);
-    this.baseSideNum = makeNumValid(options.baseSideNum, 2, 3, true);
-    this.height = makeNumValid(options.height, 0, 1, false);
-  }
-}
-
-
-/*
-Takes in a string as input and fetches the number from it. If it can't be
-read, or if it is too low, sets the number to defaultValue
-
-If parseAsInt is true, also sets this number to be the default value when
-a non-integer is input
-*/
-function makeNumValid(inputString, highestInvalidNum, defaultValue, parseAsInt){
-  let inputNumber = Number(inputString)
-  if(inputNumber === Number.NaN || inputNumber <= highestInvalidNum || parseAsInt && !Number.isInteger(inputNumber)){
-    alert("Invalid input. Using default value " + defaultValue + " in place of input " + inputNumber)
-    return defaultValue;
-  }
-  else{
-    return inputNumber;
+    this.baseSideLength = options.baseSideLength
+    this.baseSideNum = options.baseSideNum
+    this.height = options.height
   }
 }
