@@ -1,5 +1,5 @@
 This project allows users to create different types of shapes, then contact a server to
-calculate things about the shapes.
+calculate their area, perimeter, volume, and surface area where relevant.
 
 The two folders, backend and frontend, are the server and client directories respectively.
 
