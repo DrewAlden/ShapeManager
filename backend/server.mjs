@@ -67,7 +67,7 @@ app.post('/getPerimeter', (req, res) => {
   console.log(req.body);
   switch (req.body.shapeType){
     case "rectangle":
-      calculatedPerimeter = (req.body.length + req.body.width) * 2;
+      calculatedPerimeter = (req.body.length + req.body.width) * 2.0;
       break;
     case "circle":
       calculatedPerimeter = 2 * Math.PI * req.body.radius;

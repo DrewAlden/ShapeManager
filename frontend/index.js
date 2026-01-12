@@ -10,7 +10,7 @@ Purpose:    Provides functionality for the index.html page.
 */
 
 
-import {createShape} from "./shapes.js";
+import {createShape} from "../shape.mjs";
 
 //Buttons for the user to interact with to create shapes,
 //clear the list, and display the list
@@ -90,14 +90,14 @@ createShapeButton.addEventListener("click", async function (){
   let newShape = await createShape({
     shapeType: shapeTypeInput.value, 
     color: shapeColorInput.value, 
-    length: shapeLengthInput.value, 
-    width: shapeWidthInput.value, 
-    height: shapeHeightInput.value, 
-    radius: shapeRadiusInput.value, 
-    numSides: shapeNumSidesInput.value, 
-    sideLength: shapeSideLengthInput.value, 
-    baseSideLength: shapeBaseSideLengthInput.value, 
-    baseSideNum: shapeBaseSideNumInput.value});
+    length: +shapeLengthInput.value, 
+    width: +shapeWidthInput.value, 
+    height: +shapeHeightInput.value, 
+    radius: +shapeRadiusInput.value, 
+    numSides: +shapeNumSidesInput.value, 
+    sideLength: +shapeSideLengthInput.value, 
+    baseSideLength: +shapeBaseSideLengthInput.value, 
+    baseSideNum: +shapeBaseSideNumInput.value});
 
   if(newShape != null){
     if(shapeTypeInput.value == "rectangle" || shapeTypeInput.value == "circle" || shapeTypeInput.value == "polygon"){
